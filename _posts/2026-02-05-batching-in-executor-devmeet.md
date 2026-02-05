@@ -1,6 +1,6 @@
 ---
 layout: none
-title: "Batching in Executor"
+title: "Batching in Executor (FOSDEM PGDay Developer Meeting Mini Version)"
 external_url: "https://s3.ap-northeast-1.amazonaws.com/amitlan.com/files/slides/batching-executor-mini.pdf"
 tags: [talks]
 description: "FOSDEM/PGDay 2026 Developer Meeting"
