@@ -4,7 +4,7 @@ title: "Postgres: how foreign keys work"
 tags: [writing, pg]
 last_updated: 2026-03-07
 ---
-"Postgres: how foreign keys work"
+# Postgres: how foreign keys work
 
 Foreign key constraints are one of those features that most people who've used a relational database take for granted. You write `REFERENCES`, the database enforces it, and that's that. But the actual implementation inside Postgres is more interesting than it might seem, and I thought it'd be worth a writeup of what actually happens under the hood — from the objects created at DDL time to how enforcement works during DML.
 
