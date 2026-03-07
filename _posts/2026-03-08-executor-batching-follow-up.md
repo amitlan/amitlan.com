@@ -1,6 +1,6 @@
 ---
 layout: writing
-title: “Postgres: executor batching, follow up”
+title: "Postgres: executor batching, follow up"
 tags: [writing, pg]
 last_updated: 2026-03-08
 ---
