@@ -69,7 +69,7 @@ The flip side is that this architecture has a nontrivial overhead per row, espec
 ---
 
 ## Source files referenced:
-- src/backend/utils/adt/ri_triggers.c
-- src/backend/commands/tablecmds.c
-- src/backend/catalog/pg_constraint.c
-- src/backend/executor/execPartition.c
+- `src/backend/utils/adt/ri_triggers.c`
+- `src/backend/commands/tablecmds.c`
+- `src/backend/catalog/pg_constraint.c`
+- `src/backend/executor/execPartition.c`
