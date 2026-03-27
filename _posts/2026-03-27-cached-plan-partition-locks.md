@@ -11,7 +11,7 @@ March 27, 2026
  
 In two earlier posts ([one](https://amitlan.com/2022/05/16/param-query-partition-woes.html), [two](https://amitlan.com/2022/11/24/query-perm-check.html)), I described performance problems that arise when using prepared statements with partitioned tables. The core issue is that when Postgres reuses a cached generic plan, it locks every partition mentioned in the plan upfront, even those that run-time pruning will immediately eliminate. For a table with thousands of partitions where a typical query touches only one, this means thousands of unnecessary `LockRelationOid()` calls on every execution.
  
-I proposed a patch back in 2022 to address this. The idea was straightforward: perform initial pruning before acquiring execution locks, then lock only the partitions that survived. After a long review cycle, the patch was committed for Postgres 18 in February 2025. Three months later, Tom Lane found a serious flaw in how it interacted with plan invalidation and the commit was reverted.
+I proposed a patch back in 2022 to address this. The idea was straightforward: perform initial pruning before acquiring execution locks, then lock only the partitions that survived. After a long review cycle, the patch was [committed](https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=525392d5727f469e9a5882e1d728917a4be56147) for Postgres 18 in February 2025. Three months later, Tom Lane found a serious flaw in how it interacted with plan invalidation and the commit was [reverted](https://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=1722d5eb05d8e5d2e064cd1798abcae4f296ca9d).
  
 This post is about what went wrong, what the redesign looks like, and where things stand now.
  
