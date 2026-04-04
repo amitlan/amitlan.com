@@ -53,5 +53,3 @@ The fourth is the actual optimization: `ExecutorPrepAndLock()`, the pruning-awar
 ## Where things stand
 
 The patch is targeting Postgres 20. It has not had a formal review in any of its iterations, which is the main blocker. The core architectural question is whether separating lock acquisition from `GetCachedPlan()` is the right direction. I think it is. `GetCachedPlan()` was combining plan retrieval with execution setup in a way that made it impossible to do anything smarter with the locking step. The new design makes the two responsibilities explicit and gives callers the flexibility to handle each one appropriately.
-
-For users who rely on prepared statements with large partitioned tables, this would be a meaningful improvement. The locking bottleneck has existed since declarative partitioning was added in Postgres 10, and `plan_cache_mode = force_custom_plan` remains the only workaround – which trades away the whole point of plan caching.
