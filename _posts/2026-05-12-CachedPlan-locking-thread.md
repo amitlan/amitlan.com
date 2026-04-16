@@ -10,9 +10,7 @@ April 12, 2026
 
 I've been working on the pruning-aware partition locking patch off
 and on since 2022. It was committed to Postgres 18, reverted, and is
-now on its second redesign targeting Postgres 20. Along the way I
-learned something about -hackers threads that I wish I had known
-earlier: a thread should carry one project, not several.
+now on its second redesign targeting Postgres 20. Along the way I started having some thoughts about -hackers threads that I wish I have had a bit earlier: a thread should carry one project, not several.
 
 The original thread started as "optimize generic plan execution for
 partitions pruned by initial pruning" and stayed alive through three
