@@ -8,7 +8,7 @@ last_updated: 2026-04-22
 # Postgres: faster foreign key checks
 April 22, 2026
 
-In an [earlier post](https://amitlan.com/2026/03/07/pg-foreign-keys.html) I described how foreign key enforcement works in Postgres. The short version is that every INSERT or UPDATE on the referencing table fires an AFTER trigger that checks whether the new row’s FK column values exist in the referenced (PK) table. That check goes through SPI: it builds a query, plans it, executes it, and tears it all down, for every single row.
+In an [earlier post](https://amitlan.com/2026/03/07/foreign-key-internals.html) I described how foreign key enforcement works in Postgres. The short version is that every INSERT or UPDATE on the referencing table fires an AFTER trigger that checks whether the new row’s FK column values exist in the referenced (PK) table. That check goes through SPI: it builds a query, plans it, executes it, and tears it all down, for every single row.
 
 This is expensive. For a bulk INSERT of a million rows into a table with a foreign key, you’re running a million mini-queries against the PK table’s index. Each one opens the PK relation, acquires a snapshot, does a permission check, runs the index probe, and closes everything. The per-row cost is small in absolute terms, but it adds up fast.
 
