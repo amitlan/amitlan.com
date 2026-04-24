@@ -5,7 +5,7 @@ tags: [writing, pg]
 last_updated: 2026-04-23
 ---
 
-# Postgres: TupleTableSlot as a batch container”
+# Postgres: TupleTableSlot as a batch container
 April 23, 2026
 
 I’ve been working on adding batched execution to the Postgres executor. In an
